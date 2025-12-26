@@ -1,0 +1,7 @@
+{
+  "name": "InstaWall - 电子拍立得墙",
+  "description": "一个模拟真实拍立得体验的电子照片墙。支持摄像头拍摄、手势控制和高度自定义装饰。",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

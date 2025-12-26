@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>印记墙 - 电子拍立得</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Inter:wght@400;500;600;900&display=swap" rel="stylesheet" crossorigin="anonymous">
+    
+    <style>
+      * { font-family: 'ZCOOL KuaiLe', cursive !important; }
+      body { 
+        background-color: #FFFBEB; 
+        color: #451a03; 
+        margin: 0;
+        padding: 0;
+        overflow: hidden; 
+        width: 100vw;
+        height: 100vh;
+      }
+      
+      .wall-viewport {
+        width: 100vw;
+        height: 100vh;
+        overflow-x: auto;
+        overflow-y: hidden;
+        position: relative;
+      }
+
+      ::-webkit-scrollbar { height: 10px; width: 10px; }
+      ::-webkit-scrollbar-track { background: rgba(0,0,0,0.03); border-radius: 10px; }
+      ::-webkit-scrollbar-thumb { background: #fcd34d; border-radius: 10px; border: 3px solid transparent; background-clip: content-box; }
+      ::-webkit-scrollbar-thumb:hover { background: #fbbf24; background-clip: content-box; }
+      
+      /* 显影遮罩层的消失动画 */
+      @keyframes develop-fade {
+        0% { opacity: 1; filter: blur(0px); }
+        30% { opacity: 0.9; filter: blur(2px); }
+        100% { opacity: 0; filter: blur(10px); }
+      }
+      
+      .developing-mask {
+        animation: develop-fade 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+
+      .glass-light {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(251, 191, 36, 0.4);
+      }
+
+      .wall-beige { background-color: #FFFBEB; background-image: radial-gradient(#fef3c7 1px, transparent 1px); background-size: 40px 40px; }
+      .wall-white { background-color: #ffffff; background-image: radial-gradient(#f1f5f9 1px, transparent 1px); background-size: 30px 30px; }
+      .wall-grey { background-color: #f1f5f9; background-image: linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px); background-size: 50px 50px; }
+      .wall-black { background-color: #0f172a; background-image: radial-gradient(#1e293b 1px, transparent 1px); background-size: 40px 40px; }
+      .wall-cork { background-color: #bc8f8f; background-image: url("https://www.transparenttextures.com/patterns/cork-board.png"); }
+
+      .frame-dots { background-image: radial-gradient(#fecdd3 1.5px, transparent 1.5px); background-size: 12px 12px; }
+      .frame-stripes { background-image: repeating-linear-gradient(-45deg, #fefce8, #fefce8 8px, #fff 8px, #fff 16px); }
+      .frame-checkered {
+        background-image: linear-gradient(45deg, #f1f5f9 25%, transparent 25%), linear-gradient(-45deg, #f1f5f9 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f1f5f9 75%), linear-gradient(-45deg, transparent 75%, #f1f5f9 75%);
+        background-size: 20px 20px;
+      }
+      
+      .control-btn {
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .control-btn:active { transform: scale(0.9); }
+
+      .photo-noise {
+        background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        opacity: 0.15;
+      }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@^19.2.1",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.1/",
+        "react/": "https://esm.sh/react@^19.2.1/",
+        "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+        "lucide-react": "https://esm.sh/lucide-react@^0.560.0",
+        "downloadjs": "https://esm.sh/downloadjs@1.4.7",
+        "html-to-image": "https://esm.sh/html-to-image@1.11.11"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
